@@ -1,0 +1,28 @@
+// This is going to select any ul elements nested inside of any element with a class of top-bar.
+// This is not just for children, it could be a grandchild or some other nested item.
+.top-bar {
+  background-color: $nav-background;
+  ul {
+    background-color: $nav-background;
+  }
+  .active-link {
+    font-weight: bold;
+    color: $link-active-color;
+  }
+}
+// this is equal to the below commented code. the advantage is the above code is more flexible because more things can be added.
+// .top-bar, .top-bar ul {
+//   background-color: $nav-background;
+// }
+
+li {
+  a {
+    color: $link-default-color;
+  }
+  a:hover {
+    color: $link-hover-color;
+  }
+  a:focus {
+    color: $link-focus-color;
+  }
+}

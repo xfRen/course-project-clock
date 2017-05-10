@@ -1,0 +1,97 @@
+$$$1. Comments in JSX.
+Example:
+<p>
+  {/* test */}
+</p>
+
+$$$2. Question: why we need to put $(document).foundation() in componentDidMount to make some Foundation components to work?
+Answer: Foundation need to initialize component with jquery when document is ready,
+jquery does the job here of hiding and showing the dropdown menu,
+for dropdown menu it should also possible to call $(document).foundation from $(document).ready(function(){});
+difference is that ready is called only once, componentDidMount is called always after render method
+
+$$$3. Use <Link/> when you're linking to a route defined with <Route/>.
+Use <IndexLink/> When you're linking to a route defined with <IndexRoute/>
+
+$$$4. Webpack is only going to rerun when files used in the bundle change.
+This means that not every file change will result in a new bundle.
+For example, imagine you add a new component file and setup a basic React component.
+Changes to this file will not result in a new bundle.
+You'll need to require this file in the app to have webpack watch it for changes.
+
+$$$5. SCSS file starting with '_' means that file is partial and needs to be imported to use.
+
+$$$6. Question: what is difference between .top-bar ul and .top-bar > ul ?
+.top-bar ul:
+This is going to select any ul elements nested inside of any element with a class of top-bar.
+This is not just for children, it could be a grandchild or some other nested item.
+The below codes are equal:
+#1:
+.top-bar {
+  ul {
+    background-color: $nav-background;
+  }
+}
+
+#2:
+.top-bar ul {
+    background-color: $nav-background;
+}
+
+.top-bar > ul:
+This selector is going to select all ul elements that are direct children of an element with a class of top-bar.
+A deeply nested ul element would not get styles in this case.
+
+$$$7. What's the difference between assertion library, testing framework and testing environment in JavaScript?
+In general, it's best to keep libraries small and specific.
+Chai is an assertion library.
+Mocha is a testing framework.
+and Karma is a testing environment.
+
+In the case of expect, it's only job is assertions.
+Karma is responsible for running the tests.
+Mocha is the framework that lets you create individual test cases and test suites using describe(), it(), beforeEach(), etc.
+
+Much older versions of did include an assertion library.
+In recent years it's been pulled out to give the developer more flexibility over which assertion library they'd like to use.
+
+$$$8. Remember, you'll only be able to run webpack from the command line
+if you install it globally with "npm install -g webpack@1.14.0"
+
+$$$9. When you run "npm test" command, it will need to run webpack before it can run your test in the browser,
+the terminal displays all the files that webpack has bundled and than it shows the results of your test.
+This output should have been suppressed when we added the following option to the karma configuration file:
+
+webpackServer: {
+  noInfo: true
+}
+
+$$$10. How _topNav.scss are able to retrieve the variable from _variable.scss?
+All the files that are imported into app.scss are essentially copy-and-pasted in the order that they are imported in.
+That means that all variables are available in all the imported files since the _variables.scss is imported first.
+
+$$$11. CSS3 Flexbox
+Flexible boxes, or flexbox, is a new layout mode in CSS3.
+Use of flexbox ensures that elements behave predictably when the page layout must
+accommodate different screen sizes and different display devices.
+For many applications, the flexible box model provides an improvement
+over the block model in that it does not use floats,
+nor do the flex container's margins collapse with the margins of its contents.
+
+$$$12. If you want to learn regular expression,
+http://regexr.com/ is a great reference and cheatsheet.
+You can input regular express and highlight each symbol to see what they mean.
+
+Some improvement on the regular expression wrote by Andrew:
+The * matches zero or more occurrences, whereas the + matches one or more occurrences.
+In this way the empty string will not pass the test.
+Also, instead of the match() method we can also use the test() method.
+
+if ( /^[0-9]+$/.test(some string) ) {
+  // statements
+}
+
+$$$13. componentDidUpdate is a life cycle method which is called everytime props / state is updated.
+componentDidUpdate: function(previousProps, previousState) {
+  ...
+}
