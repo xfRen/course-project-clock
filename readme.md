@@ -18,6 +18,6 @@
     <td><a href="https://mochajs.org/" target="_blank"><img src="logo/mocha-logo.png" height="60px" /></a></td>
     <td><a href="https://webpack.github.io/" target="_blank"><img src="logo/webpack-logo.png" height="60px" /></a></td>
     <td><a href="https://git-scm.com/" target="_blank"><img src="logo/git-logo.png" height="60px" /></a></td>
-    <td><a href="http://gentle-harbor-47416.herokuapp.com/" target="_blank"><img src="logo/heroku-logo.png" height="60px" /></a></td>
+    <td><a href="https://stormy-shelf-81875.herokuapp.com/" target="_blank"><img src="logo/heroku-logo.png" height="60px" /></a></td>
   </tr>
 </table>
