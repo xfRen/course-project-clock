@@ -31,12 +31,16 @@ var Slider = React.createClass({
   componentWillReceiveProps: function(newProps) {
     var {hideSlider} = newProps;
     if (hideSlider) {
-      document.getElementById('slider').style.visibility = 'hidden';
-      document.getElementById('slider').children[0].setAttribute('aria-valuenow', '0');
-      document.getElementById('slider').children[0].style.left = '0%';
-      document.getElementById('slider').children[1].style.width = '0px';
+      if (document.getElementById('slider') !== null) {
+        document.getElementById('slider').style.visibility = 'hidden';
+        document.getElementById('slider').children[0].setAttribute('aria-valuenow', '0');
+        document.getElementById('slider').children[0].style.left = '0%';
+        document.getElementById('slider').children[1].style.width = '0px';
+      }
     } else {
-      document.getElementById('slider').style.visibility = 'visible';
+      if (document.getElementById('slider') !== null) {
+        document.getElementById('slider').style.visibility = 'visible';
+      }
     }
   }
 });

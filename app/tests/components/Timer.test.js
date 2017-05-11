@@ -3,18 +3,23 @@ const TestUtils = require('react-addons-test-utils');
 const expect = require('expect');
 const Timer = require('Timer');
 
-const SET_TIMER = 'Drag the blue square to set the timer';
-
 describe('Component - Timer', function() {
   it('should exist', function() {
     expect(Timer).toExist();
   });
 
-  describe('Function - getInitialState', function() {
-    it('should return an object', function() {
+  describe('Function - setTime', function() {
+    it('should set minute and second to 0 if input value is 0', function() {
       var timer = TestUtils.renderIntoDocument(<Timer/>);
-      var returnObj = timer.getInitialState();
-      expect(returnObj).toBeAn('object');
+      timer.setTime(0);
+      expect(timer.state.minute).toBe(0);
+      expect(timer.state.second).toBe(0);
+    });
+    it('should calculate minute and second if input value is not 0 or NaN', function() {
+      var timer = TestUtils.renderIntoDocument(<Timer/>);
+      timer.setTime(102);
+      expect(timer.state.minute).toBe(1);
+      expect(timer.state.second).toBe(42);
     });
   });
 });

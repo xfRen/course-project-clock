@@ -95,3 +95,15 @@ $$$13. componentDidUpdate is a life cycle method which is called everytime props
 componentDidUpdate: function(previousProps, previousState) {
   ...
 }
+
+$$$14. Benefits of testing:
+Testing lets you make sure that you're not breaking features when adding new ones.
+It's also fantastic for testing those edge cases you forget about when using the app in the browser.
+
+$$$15. The {} allows for a JSX expression which is not part of your normal HTML setup.
+You can still pass in a prop using propName="something" where "something"
+will get passed in as a static string. Using that syntax you can only pass down strings.
+
+{} allows you to pass in anything you like. Numbers, booleans, functions, etc.
+You can also reference variables so you don't have to pass down static props like you do with quotes.
+You can run any javascript you like inside of a JSX expression!
