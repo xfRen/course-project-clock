@@ -42,7 +42,7 @@ describe('Component - Stopwatch', function() {
 
   describe('Function - startClickHandler', function() {
     var stopwatch = TestUtils.renderIntoDocument(<Stopwatch/>);
-    function resetState() {
+    var resetState = function() {
       var {intervalId} = stopwatch.state;
       if (intervalId !== 0) {
         clearInterval(intervalId);

@@ -78,6 +78,9 @@ For many applications, the flexible box model provides an improvement
 over the block model in that it does not use floats,
 nor do the flex container's margins collapse with the margins of its contents.
 
+A Complete Guide to Flexbox:
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
 $$$12. If you want to learn regular expression,
 http://regexr.com/ is a great reference and cheatsheet.
 You can input regular express and highlight each symbol to see what they mean.
@@ -107,3 +110,105 @@ will get passed in as a static string. Using that syntax you can only pass down 
 {} allows you to pass in anything you like. Numbers, booleans, functions, etc.
 You can also reference variables so you don't have to pass down static props like you do with quotes.
 You can run any javascript you like inside of a JSX expression!
+
+$$$16. Currying refers to the process of transforming a function with
+multiple arity into the same function with less arity.
+The curried effect is achieved by binding some of the arguments to the first function invoke,
+so that those values are fixed for the next invocation.
+Here’s an example of what a curried function looks like:
+
+var babyAnimals = function(a) {
+  return function(b) {
+    var result = 'I love '.concat(a).concat(' and ').concat(b);
+    return result;
+  }
+}
+
+var babyKoala = babyAnimals('koalas');
+
+babyKoala('elephants');     // 'I love koalas and elephants'
+babyKoala('flamingos');     // 'I love koalas and flamingos'
+babyKoala('axolotls');      // 'I love koalas and axolotls'
+
+https://www.sitepoint.com/currying-in-functional-javascript/
+
+$$$17. Question:
+In Lecture 78 @2:52, below code:
+
+<button onClick={this.onStatusChange('paused')}>Pause</button>
+
+onStatusChange: function(newStatus) {
+  return () => {
+    this.props.onStatusChange(newStatus);
+  }
+}
+
+why we cant just call this:
+
+onStatusChange: function(newStatus) {
+  this.props.onStatusChange(newStatus);
+}
+
+Answer:
+The difference is this.
+The first solution returns a function that knows how to update the status.
+It's return value (the arrow function) is what gets stored as the actual callback function for the event.
+It's gets passed to onClick and the generated function gets called when the button is clicked.
+
+The second solution calls this.props.onStatusChange right away, not when the button gets clicked.
+(It will be executed once the button is rendered.)
+The onClick value is going to be undefined which is the default return value for onStatusChange.
+That's a problem.
+
+The first solution is useful because we've created a function generator.
+We can generate 3 different functions for our 3 statuses.
+Since we have multiple statuses we can use the first solution to generate a function for each.
+The alternative would be creating 3 separate functions for each status.
+
+Here's a JSX snippet that would work for the second solution:
+
+<button className="button secondary" onClick={() => {
+    this.onStatusChange('paused');
+}}></button>
+
+You can simply that further like this:
+
+<button className="button secondary" onClick={() => this.onStatusChange('paused')}></button>
+
+$$$18. Arrow function and this keyword:
+// This won't work (arrow functions)
+var obj1 = {
+  name: 'Andrew',
+  printName: () => {
+    console.log(this.name); // Will print undefined
+  }
+};
+obj1.printName();
+
+
+// This will work (ES5)
+var obj2 = {
+  name: 'Andrew',
+  printName: function () {
+    console.log(this.name); // Will print Andrew
+  }
+};
+obj2.printName();
+
+
+// This will work (ES6 method definition syntax)
+var obj3 = {
+  name: 'Andrew',
+  printName () {
+    console.log(this.name); // Will print Andrew
+  }
+};
+obj3.printName();
+
+$$$19. There are two main paths for adding fonts.
+First would be simply adding a link tag to the head of your html document.
+That's the method you should use since Google Fonts only provides you with a url.
+It's totally fine that it's not part of webpack since it's not a file.
+
+If you did have a set of font files, then you would want to use webpack.
+That would be the case if you were using a font icon or if you had a custom font with font files you wanted to include.

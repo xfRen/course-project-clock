@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const {Link, IndexLink} = require('react-router');
 
 var TopNav = React.createClass({
@@ -25,7 +26,8 @@ var TopNav = React.createClass({
     );
   },
   componentDidMount: function() {
-    $(this.getDOMNode()).foundation();
+    // $(this.getDOMNode()).foundation();
+    $(ReactDOM.findDOMNode(this)).foundation();
   }
 });
 

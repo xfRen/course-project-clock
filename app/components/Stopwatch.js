@@ -15,7 +15,11 @@ var Stopwatch = React.createClass({
       intervalId: 0
     };
   },
+  componentWillMount: function() {
+    // console.log('Stopwatch - componentWillMount() is invoked immediately before mounting occurs.');
+  },
   render: function() {
+    // console.log('Stopwatch - render');
     var {status, minute, second} = this.state;
     var minuteStr = minute.toString();
     if (minuteStr.length === 1) {
@@ -36,6 +40,23 @@ var Stopwatch = React.createClass({
           onReset={this.resetClickHandler}/>
       </div>
     );
+  },
+  componentDidMount: function() {
+    // console.log('Stopwatch - componentDidMount() is invoked immediately after a component is mounted.');
+  },
+  componentWillUnmount: function() {
+    // console.log('Stopwatch - componentWillUnmount() is invoked immediately before a component is unmounted and destroyed.');
+    var {intervalId} = this.state;
+    clearInterval(intervalId);
+    this.resetClickHandler();
+  },
+  componentWillUpdate: function(nextProps, nextState) {
+    // Note that you cannot call this.setState() here.
+    // If you need to update state in response to a prop change, use componentWillReceiveProps() instead.
+    // console.log('Stopwatch - componentWillUpdate() is invoked immediately before rendering when new props or state are being received. ');
+  },
+  componentDidUpdate: function(prevProps, prevState) {
+    // console.log('Stopwatch - componentDidUpdate() is invoked immediately after updating props/state occurs. This method is not called for the initial render.');
   },
   startClickHandler: function() {
     var intervalId = setInterval(this.runClock, 1000);
