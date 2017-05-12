@@ -28,6 +28,7 @@ var Buttonbar = React.createClass({
     }
   },
   componentWillReceiveProps: function(newProps) {
+    // console.log('Buttonbar - componentWillReceiveProps() is invoked before a mounted component receives new props.');
     var {startBtnDisabled} = newProps;
     if (startBtnDisabled) {
       $('#startBtn').addClass('disabled');
@@ -65,10 +66,7 @@ var Buttonbar = React.createClass({
   toggleButton: function() {
     $('#startBtn').toggleClass('hide');
     $('#pauseBtn').toggleClass('hide');
-  },
-  componentWillReceiveProps: function() {
-    // console.log('Buttonbar - componentWillReceiveProps() is invoked before a mounted component receives new props.');
-  },
+  }
 });
 
 module.exports = Buttonbar;
